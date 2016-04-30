@@ -1,0 +1,41 @@
+
+Steps for usage:
+    1. Make a screenshot of the nemi forest minimap
+    2. Either paste this screenshot or import it
+        Pasting:
+            Use one of the following options:
+                * Press control+v
+                * use the menu bar, Edit > Paste map
+                * Right click and select 'Paste image'
+        Importing:
+            Use one of the following options:
+                * Press control+o
+                * use the menu bar, File > Load image
+                * Right click and select 'Load image'
+
+    3. Place the nodes:
+        Select the nodes by using one of the following options:
+            #1 Pressing their names to the right (Under 'Skill Nodes')
+            #2 Using the menu, Tools
+            #3 Use the keys 1-9,0,-,=
+        Once selected, simply left click where to place the node.
+
+        Note: Selecting the same node that is selected will cause it to be unselected.
+
+    4. Create the path.
+        4.1 Enter path mode by doing one of the following options:
+                #1 Using the menu, Tools > Path
+                #2 Selecting the same node twice.
+        4.2 Simply drag the path (Hold left mouse btn)
+
+    5. Save the map!
+        Either:
+            #1 Use the menu bar File > Save
+            #2 press control + s
+            #3 right click, save map
+
+Additional usage nodes:
+
+Actions can be undone by:
+    * Using the menubar, edit > Undo
+    * Pressing Control+z
