@@ -124,6 +124,7 @@ public class UI extends JFrame{
         fileOpenDialog.setMultiSelectionEnabled(false);
 
         this.setTitle("/r/nemiforest - Map creator");
+        this.setResizable(false);
     }
 
     public static void main(String[] args){
