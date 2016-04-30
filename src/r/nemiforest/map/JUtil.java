@@ -16,7 +16,7 @@ public interface JUtil {
         @Override
         public boolean accept(File f) {
             if(!f.isFile())
-                return false;
+                return f.isDirectory();
 
             String name = f.getName().toLowerCase();
             return name.endsWith(".png") || name.endsWith(".jpg") ||name.endsWith(".jpeg") || name.endsWith(".gif") || name.endsWith(".bmp");
@@ -32,7 +32,7 @@ public interface JUtil {
         @Override
         public boolean accept(File f) {
             if(!f.isFile())
-                return false;
+                return f.isDirectory();
 
             String name = f.getName().toLowerCase();
             return name.endsWith(".png");
