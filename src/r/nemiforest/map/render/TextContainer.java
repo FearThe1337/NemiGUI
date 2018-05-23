@@ -51,12 +51,13 @@ public class TextContainer {
             int height = metrics.getHeight();
 
             int minX = element.getX();
-            int minY = element.getY();
+            int minY = element.getY() - height;
             int maxX = minX + width;
             int maxY = minY + height;
 
             if( x >= minX && x <= maxX && y >= minY && y <= maxY) {
                 elements.remove(element);
+                render();
                 return element;
             }
         }

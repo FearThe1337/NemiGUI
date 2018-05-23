@@ -8,6 +8,7 @@ import r.nemiforest.map.history.NodePlacementAction;
 import r.nemiforest.map.history.NodeRemovalAction;
 import r.nemiforest.map.history.PathPlacementAction;
 import r.nemiforest.map.history.TextPlacementAction;
+import r.nemiforest.map.history.TextRemovalAction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -189,12 +190,17 @@ public class ImageRender extends JPanel {
                         if(entry != null){
                             history.add(new NodeRemovalAction(ImageRender.this,itemContainer,entry));
                             repaint();
+                        } else {
+                            TextElement element = textContainer.remove(x,y);
+                            if(element != null) {
+                                history.add(new TextRemovalAction(ImageRender.this, textContainer, element));
+                                repaint();
+                            }
                         }
                     }else if(RenderItems.TEXT.equals(item)) {
                         TextElement element = textContainer.add(x,y,currentText);
                         history.add(new TextPlacementAction(ImageRender.this, textContainer, element));
                         repaint();
-                        System.out.println("added text");
                     }
                 }}
             @Override
@@ -217,7 +223,7 @@ public class ImageRender extends JPanel {
 
     public void setItem(RenderItems item){
         if(this.item != null){
-            if(this.item.equals(item))
+            if(this.item.equals(item) && this.item != RenderItems.TEXT)
                 item = null;
         }
 

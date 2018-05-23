@@ -55,6 +55,8 @@ public class UI extends JFrame{
                     renderer.setItem(null);
                 }else if(keyCode == 68){
                     renderer.setItem(RenderItems.DELETE);
+                } else if(keyCode == 84) {
+                    renderer.setItem(RenderItems.TEXT);
                 }
             }
         }
