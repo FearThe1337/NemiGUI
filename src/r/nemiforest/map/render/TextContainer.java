@@ -93,9 +93,9 @@ public class TextContainer {
         Font[] fonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAllFonts();
         for (Font font1 : fonts) {
             if(font1.getName().startsWith("Arial"))
-                return font1.deriveFont(20.0f);
+                return font1.deriveFont(24.0f).deriveFont(Font.BOLD);
         }
 
-        return fonts[0].deriveFont(20.0f);
+        return fonts[0].deriveFont(24.0f).deriveFont(Font.BOLD);
     }
 }
