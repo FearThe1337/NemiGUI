@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 public class RouteElement {
     static class Point{
-        public final int x,y;
-        public Point(int x, int y){
+        private final int x,y;
+        private Point(int x, int y){
             this.x = x;
             this.y = y;
         }
@@ -40,7 +40,7 @@ public class RouteElement {
     }
 
     private void render(Graphics2D g, int x1, int y1, int x2, int y2){
-        g.setColor(new Color(255,255,0,180));
+        g.setColor(RenderConstants.ROUTE_COLOR);
         g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC));
 
         int dpx = Math.max(x2 - x1, x1 - x2);

@@ -7,6 +7,7 @@ import r.nemiforest.map.history.History;
 import r.nemiforest.map.history.NodePlacementAction;
 import r.nemiforest.map.history.NodeRemovalAction;
 import r.nemiforest.map.history.PathPlacementAction;
+import r.nemiforest.map.history.TextPlacementAction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,13 +25,14 @@ public class ImageRender extends JPanel {
     private int mx, my;
     private boolean mouseInside = false;
     private RenderItems item;
+    private String currentText;
 
     // Various layers & data containers
     private BufferedImage mapLayer;
     private ItemContainer itemContainer;
     private RouteContainer paths;
     private History history;
-
+    private TextContainer textContainer;
 
     public ImageRender(){
         item = null;
@@ -43,6 +45,7 @@ public class ImageRender extends JPanel {
 
         this.paths = new RouteContainer(width,height);
         this.itemContainer = new ItemContainer(width,height);
+        this.textContainer = new TextContainer(width, height);
         Dimension d = new Dimension(width,height);
 
         this.setMinimumSize(d);
@@ -80,26 +83,32 @@ public class ImageRender extends JPanel {
         // Icon layer
         g.drawImage(itemContainer.getImage(),0,0,null);
 
+        // Text layer
+        g.drawImage(textContainer.getImage(), 0,0, null);
+
         // Legend (top layer)
         g.drawImage(Resources.instance().LEGEND,0,0,null);
 
         // Current layer.
         if(renderMouse && mouseInside){
             if(item != null) {
-                BufferedImage mouseImage = item.getImage();
+                if(item == RenderItems.TEXT) {
+                    textContainer.renderText(g, mx, my, currentText);
+                } else {
+                    BufferedImage mouseImage = item.getImage();
 
-                //Needed to center.
-                int width = mouseImage.getWidth();
-                int height = mouseImage.getHeight();
+                    //Needed to center.
+                    int width = mouseImage.getWidth();
+                    int height = mouseImage.getHeight();
 
-                int px = Math.max(0, mx - (width / 2));
-                int py = Math.max(0, my - (height / 2));
+                    int px = Math.max(0, mx - (width / 2));
+                    int py = Math.max(0, my - (height / 2));
 
-                g.drawImage(mouseImage, px, py, null);
+                    g.drawImage(mouseImage, px, py, null);
+                }
             }else{
-                g.setColor(new Color(255,255,0,180));
                 g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC));
-                g.setColor(new Color(255,255,0,180));
+                g.setColor(RenderConstants.ROUTE_COLOR);
                 g.fillOval(mx-5, my-5, 10, 10);
             }
         }
@@ -132,7 +141,6 @@ public class ImageRender extends JPanel {
         int y1 = Constants.map_minY + yo;
 
         g.drawImage(mapLayer,x1, y1,renderWidth,renderHeight,null);
-
     }
 
     private void addMouseListener(){
@@ -182,6 +190,11 @@ public class ImageRender extends JPanel {
                             history.add(new NodeRemovalAction(ImageRender.this,itemContainer,entry));
                             repaint();
                         }
+                    }else if(RenderItems.TEXT.equals(item)) {
+                        TextElement element = textContainer.add(x,y,currentText);
+                        history.add(new TextPlacementAction(ImageRender.this, textContainer, element));
+                        repaint();
+                        System.out.println("added text");
                     }
                 }}
             @Override
@@ -209,6 +222,14 @@ public class ImageRender extends JPanel {
         }
 
         this.item = item;
+
+        if(this.item == RenderItems.TEXT) {
+            this.currentText = JOptionPane.showInputDialog(this, "Enter text to place: ", "Input required", JOptionPane.PLAIN_MESSAGE);
+            if(this.currentText == null || this.currentText.length() <= 0) {
+                this.item = null;
+            }
+        }
+
         this.repaint();
     }
 

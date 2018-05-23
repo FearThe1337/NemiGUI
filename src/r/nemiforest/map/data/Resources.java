@@ -26,6 +26,7 @@ public class Resources {
     public final BufferedImage NODE_PAHLTI;
     public final BufferedImage NODE_TRAITOR;
     public final BufferedImage DELETE;
+    public final BufferedImage TEXT;
 
 
     public Resources(){
@@ -45,6 +46,7 @@ public class Resources {
             NODE_TRAITOR = loadImage("Trinks_Traitor.PNG");
             EXAMPLE = loadImage("example.PNG");
             DELETE = loadImage("delete.PNG");
+            TEXT = loadImage("text.PNG");
         }catch(Exception e){
             throw new Error(e);
         }

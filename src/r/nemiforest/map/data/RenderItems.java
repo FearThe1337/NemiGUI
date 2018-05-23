@@ -20,8 +20,8 @@ public enum RenderItems {
     PLANT(Resources.instance().NODE_PAHLTI, "Pahtli plant"),
     TRAITOR(Resources.instance().NODE_TRAITOR,"Traitor"),
 
-
-    DELETE(false,Resources.instance().DELETE,"Delete nodes");
+    DELETE(false,Resources.instance().DELETE,"Delete nodes"),
+    TEXT(false,Resources.instance().TEXT,"Add text");
     ;
     private final boolean placeable;
     private final BufferedImage img;
