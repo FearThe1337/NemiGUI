@@ -16,7 +16,7 @@ public class RouteElement {
         }
     }
 
-    private ArrayList<Point> positions;
+    private final ArrayList<Point> positions;
 
     public RouteElement(){
         this.positions = new ArrayList<>();

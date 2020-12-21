@@ -13,9 +13,9 @@ import java.util.ArrayList;
  * The class is also responsible for rendering it and maintaining a image to buffer this.
  */
 public class TextContainer {
-    private BufferedImage bi;
-    private ArrayList<TextElement> elements;
-    private Font font = getFont();
+    private final BufferedImage bi;
+    private final ArrayList<TextElement> elements;
+    private final Font font = getFont();
 
     public TextContainer(int width, int height){
         this.bi = new BufferedImage(width,height,BufferedImage.TYPE_INT_ARGB);
